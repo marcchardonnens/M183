@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPEmail", "OTPEmail\OTPEmail.csproj", "{81DA7FC0-03D6-4B15-8029-84883D1BBB4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailOTP", "EmailOTP\EmailOTP.csproj", "{23C60B9B-13A2-4A3B-92C9-C2FEA6FF273B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{81DA7FC0-03D6-4B15-8029-84883D1BBB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DA7FC0-03D6-4B15-8029-84883D1BBB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DA7FC0-03D6-4B15-8029-84883D1BBB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C60B9B-13A2-4A3B-92C9-C2FEA6FF273B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C60B9B-13A2-4A3B-92C9-C2FEA6FF273B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C60B9B-13A2-4A3B-92C9-C2FEA6FF273B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C60B9B-13A2-4A3B-92C9-C2FEA6FF273B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
