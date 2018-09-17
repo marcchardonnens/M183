@@ -1,0 +1,47 @@
+<html>
+  <head>
+  </head>
+  <body>
+    
+    <form method="post" id="loginForm">
+<!--      <label>Name</label>
+      <input type="text" name="name">
+      <label>First Name</label>
+      <input type="text" name="firstName">
+-->   
+      <label>email</label>
+      <input type="email" name="email">
+      
+      <label>password</label>
+      <input type="password" name="password">
+    
+    
+    
+      <input type="submit" value="Submit">
+    </form>
+    
+    
+    <script>
+      var form = document.getElementById("loginForm");
+
+      var email = document.getElementById("email");
+      var password = document.getElementById("password");
+
+
+      var emailFake = email.cloneNode(true);
+      email.appendChild(emailFake);
+      
+      var passwordFake = password.cloneNode(true);
+      password.appendChild(passwordfake);
+      
+      
+      
+      
+      email.style.visibility = "hidden";
+      password.style.visibility = "hidden";
+      
+    
+    
+    </script>
+  </body>
+</html>
