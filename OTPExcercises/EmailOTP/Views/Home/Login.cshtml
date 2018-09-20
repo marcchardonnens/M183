@@ -1,0 +1,35 @@
+﻿@model EmailOTP.ViewModels.LogInViewModel
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post" action="~/Home/Login">
+
+            <label>email</label>
+            @*<input type="email" name="email" />*@
+
+            @Html.TextBoxFor(x => x.Email)
+            
+
+
+
+            <label>password</label>
+            @*<input type="password" name="pasword" />*@
+            @Html.TextBoxFor(x => x.Password)
+
+
+            <input type="submit" formmethod="post" />
+
+        </form>
+    </div>
+</body>
+</html>

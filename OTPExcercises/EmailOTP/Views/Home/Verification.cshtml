@@ -1,0 +1,20 @@
+﻿@model EmailOTP.ViewModels.VerificationViewModel
+
+@{
+    ViewBag.Title = "Verification";
+}
+
+<h2>Verification</h2>
+
+
+
+@using (Html.BeginForm("Verify", "Home", FormMethod.Post))
+{
+    @Html.Label("Verification Code")
+    @Html.LabelFor(x => x.VerificationCodeInput)
+
+    <input type="submit" />
+}
+
+
+
