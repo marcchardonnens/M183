@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="FakeLoginSnippets">
+      <UniqueIdentifier>{4a7843a9-0775-44f3-907a-020fd131f49b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\FakeLoginSnippet\Fake-Login-Snippet.html">
+      <Filter>FakeLoginSnippets</Filter>
+    </None>
+    <None Include="..\..\FakeLoginSnippet\FakeLoginIFrame.htm">
+      <Filter>FakeLoginSnippets</Filter>
+    </None>
+  </ItemGroup>
+</Project>

