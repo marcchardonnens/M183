@@ -11,7 +11,7 @@
 @using (Html.BeginForm("Verify", "Home", FormMethod.Post))
 {
     @Html.Label("Verification Code")
-    @Html.LabelFor(x => x.VerificationCodeInput)
+    @Html.TextBoxFor(x => x.VerificationCodeInput)
 
     <input type="submit" />
 }

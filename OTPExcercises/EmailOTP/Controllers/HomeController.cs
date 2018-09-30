@@ -11,9 +11,10 @@ namespace EmailOTP.Controllers
 {
     public class HomeController : Controller
     {
-        Login ExampleLogin = new Login("marcchardonnens1@gmail.com","password");
+
+         static Login ExampleLogin = new Login("giesende11@gmail.com", "password");
         // GET: Home
-        
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -25,7 +26,7 @@ namespace EmailOTP.Controllers
         [HttpPost]
         public ActionResult Login(LogInViewModel vm)
         {
-            if(vm.Email == ExampleLogin.Email && vm.Password == ExampleLogin.Password)
+            if (vm.Email == ExampleLogin.Email && vm.Password == ExampleLogin.Password)
             {
                 
                 //generate verification number and send email
@@ -61,11 +62,17 @@ namespace EmailOTP.Controllers
         {
             if(vm.VerificationCodeInput == ExampleLogin.VerificationNumber.ToString())
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(VerificationSuccess));
             }
 
             return RedirectToAction("Verification");
             
+        }
+
+        [HttpGet]
+        public ActionResult VerificationSuccess()
+        {
+            return View("VerificationSuccess");
         }
 
     }
