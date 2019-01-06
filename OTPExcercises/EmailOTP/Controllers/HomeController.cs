@@ -19,7 +19,7 @@ namespace EmailOTP.Controllers
         public ActionResult Login()
         {
 
-
+            ExampleLogin = new Login("", "");
             return View("Login");
         }
 
@@ -41,10 +41,6 @@ namespace EmailOTP.Controllers
 
         public ActionResult Index()
         {
-
-
-
-
             return View(new LogInViewModel());
         }
 
