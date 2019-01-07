@@ -30,6 +30,11 @@ namespace Authentication.Controllers
             return View();
         }
 
+        public ActionResult Aufgabensammlung()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult KeyLogger()
