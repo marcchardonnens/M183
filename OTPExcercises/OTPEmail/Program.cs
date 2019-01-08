@@ -12,21 +12,17 @@ namespace OTPEmail
     {
         static void Main(string[] args)
         {
-            MailMessage mail = new MailMessage("debbie@isadork.com", "deborah.senn.89@outlook.ch");
-            SmtpClient client = new SmtpClient();
-            client.Port = 25;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Host = "smtp.gmail.com";
-            client.EnableSsl = true;
-            client.Credentials = new System.Net.NetworkCredential("debbie.isadork@gmail.com", "debdeb123+");
-            mail.Subject = "this is a test email.";
-            mail.Body = "this is my test email body";
-            
-            for (int i = 0; i < 100; i++)
+            var client = new SmtpClient("smtp.mailgun.org", 587)
             {
-                client.Send(mail);
-            }
+                Credentials = new System.Net.NetworkCredential("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
+                EnableSsl = true
+                
+               
+            };
+            client.Send("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "marcchardonnens1@gmail.com", "test", "testbody");
+            Console.WriteLine("Sent");
+            Console.ReadLine();
+
         }
     }
 }
