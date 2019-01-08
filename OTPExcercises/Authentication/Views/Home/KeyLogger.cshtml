@@ -10,7 +10,9 @@
     Die letzte getipte Zeile wird auf der Index Seite ausgegeben (refresh erforderlich).
 </p>
 
-<script type="text/javascript">
+<script type="text/javascript" charset="utf-8">
+
+        ///Aufgabe01
 
         var word = "";
         var sentence = "";
@@ -25,7 +27,7 @@
 
             switch (characterCode) {
                 case 32:
-                    sentence += word;
+                    sentence += " " + word;
                     console.log("word: " + word);
                     word = "";
                     break;
