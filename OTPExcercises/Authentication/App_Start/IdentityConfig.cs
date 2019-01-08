@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Authentication.Models;
+using System.Net.Mail;
 
 namespace Authentication
 {
@@ -18,7 +19,18 @@ namespace Authentication
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Hier den E-Mail-Dienst einfügen, um eine E-Mail-Nachricht zu senden.
+            SmtpClient client = new SmtpClient();
+            MailMessage mail = new MailMessage("debbie.isadork@gmail.com", message.Destination);
+            client.Port = 25;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true;
+            client.Credentials = new System.Net.NetworkCredential("debbie.isadork@gmail.com", "debdeb123+");
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+            client.SendMailAsync(mail);
+            
             return Task.FromResult(0);
         }
     }

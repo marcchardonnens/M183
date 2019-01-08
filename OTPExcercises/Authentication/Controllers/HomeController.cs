@@ -30,10 +30,12 @@ namespace Authentication.Controllers
             return View();
         }
 
+
         public ActionResult Aufgabensammlung()
         {
             return View();
         }
+
 
 
         [HttpGet]
@@ -43,6 +45,11 @@ namespace Authentication.Controllers
         }
 
 
+        /// <summary>
+        /// Aufgabe01
+        /// </summary>
+        /// <param name="line">letze abgeschickte line</param>
+        /// <returns>Redirect to index</returns>
         [HttpGet]
         public ActionResult GetKeyLoggerLine(string line)
         {
