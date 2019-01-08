@@ -159,7 +159,7 @@ namespace Authentication.Controllers
 
                     // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                     // E-Mail-Nachricht mit diesem Link senden
-                    SendVerificationMail(user);
+                    await SendVerificationMail(user);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -173,11 +173,14 @@ namespace Authentication.Controllers
 
         //TODO
         [HttpPost]
-        public ActionResult ResendVerificationMail(IndexViewModel model)
+        public async Task<ActionResult> ResendVerificationMail()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            SendVerificationMail(user);
-            return View(model);
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
+            //await SendVerificationMail(user);
+            return RedirectToAction("Index","Manage");
 
         }
 
@@ -461,7 +464,7 @@ namespace Authentication.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private async void SendVerificationMail(ApplicationUser user)
+        private async Task SendVerificationMail(ApplicationUser user)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);

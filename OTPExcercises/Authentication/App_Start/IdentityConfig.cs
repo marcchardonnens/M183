@@ -19,20 +19,14 @@ namespace Authentication
     {
         public Task SendAsync(IdentityMessage message)
         {
-            var client = new SmtpClient()
+            //Aufgabe05
+            var client = new SmtpClient("smtp.mailgun.org", 587)
             {
-                Credentials = new System.Net.NetworkCredential("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
-                EnableSsl = true,
-                Port = 587,
-                Host = "smtp.mailgun.org",
-                UseDefaultCredentials = false,
-                DeliveryMethod = SmtpDeliveryMethod.Network
-        };
-            MailMessage mail = new MailMessage("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", message.Destination);
-            mail.Subject = message.Subject;
-            mail.Body = message.Body;
-            client.SendMailAsync(mail);
-            
+                Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
+                EnableSsl = true
+            };
+            client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
+
             return Task.FromResult(0);
         }
     }
