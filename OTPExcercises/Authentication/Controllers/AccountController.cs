@@ -159,9 +159,7 @@ namespace Authentication.Controllers
 
                     // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=320771".
                     // E-Mail-Nachricht mit diesem Link senden
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
+                    SendVerificationMail(user);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -170,6 +168,17 @@ namespace Authentication.Controllers
 
             // Wurde dieser Punkt erreicht, ist ein Fehler aufgetreten; Formular erneut anzeigen.
             return View(model);
+        }
+
+
+        //TODO
+        [HttpPost]
+        public ActionResult ResendVerificationMail(IndexViewModel model)
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            SendVerificationMail(user);
+            return View(model);
+
         }
 
         //
@@ -450,6 +459,13 @@ namespace Authentication.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private async void SendVerificationMail(ApplicationUser user)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

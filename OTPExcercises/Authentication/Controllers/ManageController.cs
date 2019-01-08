@@ -67,6 +67,7 @@ namespace Authentication.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                IsVerified = UserManager.IsEmailConfirmed(userId),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),

@@ -23,6 +23,26 @@
             }
             ]
         </dd>
+        <dt>Email verifizieren</dt>
+        <dd>
+            @if (Model.IsVerified)
+            {
+                @:Email ist verifiziert
+            }
+            else
+            {
+                @Html.BeginForm("ResendVerificationMail","Account",FormMethod.Post)
+                {
+                    
+
+
+                }
+                @:Email ist noch nicht verifiziert. [@Html.ActionLink("Email Senden", "ResendVerificationMail", "Account", "", FormMethod.Post)]
+                
+                
+            }
+
+        </dd>
         <dt>Externe Anmeldungen:</dt>
         <dd>
             @Model.Logins.Count [
