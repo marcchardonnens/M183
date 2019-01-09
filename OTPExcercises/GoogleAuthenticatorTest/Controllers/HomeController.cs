@@ -32,8 +32,6 @@ namespace GoogleAuthenticatorTest.Controllers
 
             bool isCorrectPin = tfa.ValidateTwoFactorPIN("randomkey", token);
 
-            ViewBag.Qr = "<img src=\"" + setupInfo.QrCodeSetupImageUrl + "\" />";
-            ViewBag.Manual = setupInfo.ManualEntryKey;
 
 
             return View();

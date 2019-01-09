@@ -435,6 +435,16 @@ namespace Authentication.Controllers
             base.Dispose(disposing);
         }
 
+        public async Task GoogleAuth()
+        {
+           //Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow f = new Google.Apis.Auth.OAuth2.Flows.GoogleAuthorizationCodeFlow()
+
+                //https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
+        }
+
+
+
+
         #region Hilfsprogramme
         // Wird für XSRF-Schutz beim Hinzufügen externer Anmeldungen verwendet
         private const string XsrfKey = "XsrfId";
