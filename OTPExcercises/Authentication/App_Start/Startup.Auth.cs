@@ -58,11 +58,11 @@ namespace Authentication
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "740576024996-fns4ek6bqo797diap9e24hmsl77i7v9g.apps.googleusercontent.com",
+                ClientSecret = "LD-d5Sq6zBt7M-eZUV4hZHtW"
+            });
         }
     }
 }

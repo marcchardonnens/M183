@@ -7,6 +7,7 @@ using Google.Authenticator;
 
 namespace GoogleAuthenticatorTest.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         // GET: Home
