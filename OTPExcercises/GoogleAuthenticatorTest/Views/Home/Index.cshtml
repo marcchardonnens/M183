@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@Html.Raw(ViewBag.Qr)
+
+
+@ViewBag.Manual
+
+@Html.BeginForm("Index","Home",FormMethod.Post)
+{
+
+    <input id="token" name="token" value="token"/>
+    <input type="submit"/>
+
+}

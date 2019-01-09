@@ -25,7 +25,7 @@ namespace Authentication
                 Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
                 EnableSsl = true
             };
-            client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
+            //client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
 
             return Task.FromResult(0);
         }
@@ -36,6 +36,8 @@ namespace Authentication
         public Task SendAsync(IdentityMessage message)
         {
             // Hier den SMS-Dienst einfügen, um eine Textnachricht zu senden.
+
+            //Aufgabe05 TODO
             return Task.FromResult(0);
         }
     }
