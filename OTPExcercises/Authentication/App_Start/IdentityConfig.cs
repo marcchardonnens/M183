@@ -12,6 +12,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Authentication.Models;
 using System.Net.Mail;
+using System.Net;
+using System.Text;
+using System.IO;
 
 namespace Authentication
 {
@@ -22,10 +25,10 @@ namespace Authentication
             //Aufgabe05
             var client = new SmtpClient("smtp.mailgun.org", 587)
             {
-                Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
+                Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "a0dd02505f71a90ea50aff0d7f60546a-060550c6-0d2b2677"),
                 EnableSsl = true
             };
-            //client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
+            client.SendAsync("postmaster@m183.tk", message.Destination, message.Subject, message.Body, null);
 
             return Task.FromResult(0);
         }
@@ -38,7 +41,44 @@ namespace Authentication
             // Hier den SMS-Dienst einfügen, um eine Textnachricht zu senden.
 
             //Aufgabe05 TODO
-            return Task.FromResult(0);
+
+            //Nexmo.Api.SMS.SMSRequest request = new Nexmo.Api.SMS.SMSRequest
+            //{
+            //    from = "0798873151",
+            //    to = message.Destination,
+            //    text = message.Body
+            //};
+
+            //Nexmo.Api.Request.Credentials crd = new Nexmo.Api.Request.Credentials();
+            //crd.ApiKey = "d02c1fb1";
+            //crd.ApiSecret = "h1RcZMFUaK9hQIOC";
+
+            //Nexmo.Api.SMS.Send(request,crd);
+
+            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create("https://rest.nexmo.com/sms/json");
+
+            string postData = "api_key=d02c1fb1";
+            postData += "&api_secret=h1RcZMFUaK9hQIOC";
+            postData += "&to=" + message.Destination;
+            postData += "&from=\"M183\"";
+            postData += "&text=\"" + message.Body + "\"";
+
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/x-www-form-urlencoded";
+            httpRequest.ContentLength = data.Length;
+
+            using (var stream = httpRequest.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            HttpWebResponse httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+            string response = new StreamReader(httpResponse.GetResponseStream()).ReadToEnd();
+
+                return Task.FromResult(0);
         }
     }
 
