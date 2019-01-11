@@ -36,6 +36,10 @@ namespace Authentication.Controllers
             return View();
         }
 
+        public ActionResult UiRedress()
+        {
+            return View();
+        }
 
 
         [HttpGet]
