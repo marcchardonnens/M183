@@ -16,6 +16,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Collections.Specialized;
+using Google.Authenticator;
 
 namespace M183
 {
@@ -29,7 +30,7 @@ namespace M183
                 Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "a0dd02505f71a90ea50aff0d7f60546a-060550c6-0d2b2677"),
                 EnableSsl = true
             };
-            //client.SendAsync("postmaster@m183.tk", message.Destination, message.Subject, message.Body, null);
+            client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
             return Task.FromResult(0);
         }
     }
@@ -95,12 +96,40 @@ namespace M183
         }
     }
 
+    //EmailTokenProvider<TUser> : EmailTokenProvider<TUser, string> where TUser : class, IUser<string>
+    public class GoogleTokenProvider<TUser> : IUserTokenProvider<ApplicationUser, string>
+    {
+        public Task<string> GenerateAsync(string purpose, UserManager<ApplicationUser, string> manager, ApplicationUser user)
+        {
+            TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+            return Task.FromResult(tfa.GetCurrentPIN(user.GoogleAuthSecret));
+        }
+
+        public Task<bool> IsValidProviderForUserAsync(UserManager<ApplicationUser, string> manager, ApplicationUser user)
+        {
+            return Task.FromResult(user.GoogleAuthVerified);
+        }
+
+        public Task NotifyAsync(string token, UserManager<ApplicationUser, string> manager, ApplicationUser user)
+        {
+            return Task.FromResult(0);
+        }
+
+        public Task<bool> ValidateAsync(string purpose, string token, UserManager<ApplicationUser, string> manager, ApplicationUser user)
+        {
+            TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+            return Task.FromResult(tfa.ValidateTwoFactorPIN(user.GoogleAuthSecret, tfa.GetCurrentPIN(user.GoogleAuthSecret)));
+        }
+    }
+
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+            
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
@@ -139,6 +168,11 @@ namespace M183
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
+            manager.RegisterTwoFactorProvider("Google Authenticator", new GoogleTokenProvider<ApplicationUser>
+            {
+                
+            });
+
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;

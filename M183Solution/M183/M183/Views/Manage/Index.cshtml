@@ -31,7 +31,7 @@
             }
             else
             {
-                @Html.BeginForm("ResendVerificationMail", "Account", FormMethod.Post)
+                using (Html.BeginForm("ResendVerificationMail", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
 
 
@@ -77,6 +77,27 @@
                 }
             </dd>
         
+        <dt>Google Authenticator</dt>
+        <dd>
+            @(Model.GoogleAuthVerified)
+            @if (Model.GoogleAuthVerified)
+            {
+                <br />
+                using (Html.BeginForm("RemoveGoogleAuthenticator", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                }
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddGoogleAuthenticator") &nbsp; &nbsp;]</text>
+            }
+            
+
+
+
+        </dd>
         <dt>Two-Factor Authentication:</dt>
         <dd>
             <p>

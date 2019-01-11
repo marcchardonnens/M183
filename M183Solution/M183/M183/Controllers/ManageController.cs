@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using M183.Models;
+using Google.Authenticator;
+using System.Security.Cryptography;
 
 namespace M183.Controllers
 {
@@ -71,7 +73,8 @@ namespace M183.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                GoogleAuthVerified = UserManager.FindById(userId).GoogleAuthVerified
             };
             return View(model);
         }
@@ -332,6 +335,56 @@ namespace M183.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddGoogleAuthenticator()
+        {
+            TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+
+            string secret = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+
+            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+            user.GoogleAuthSecret = secret;
+            UserManager.Update(user);
+
+            var setupInfo = tfa.GenerateSetupCode("m183("+ User.Identity.Name + ")", secret, 300, 300);
+
+            ViewBag.Qr = setupInfo.QrCodeSetupImageUrl;
+            ViewBag.QrCode = setupInfo.ManualEntryKey;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddGoogleAuthenticator(string CodeInput)
+        {
+            TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+
+            bool isCorrectPin = tfa.ValidateTwoFactorPIN(UserManager.FindById(User.Identity.GetUserId()).GoogleAuthSecret, CodeInput);
+            
+            if(isCorrectPin)
+            {
+                ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+                user.GoogleAuthVerified = true;
+                UserManager.Update(user);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("AddGoogleAuthenticator");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RemoveGoogleAuthenticator()
+        {
+
+            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+            user.GoogleAuthVerified = false;
+            user.GoogleAuthSecret = "";
+            UserManager.Update(user);
+
+            return RedirectToAction("Index");
         }
 
 #region Helpers
