@@ -33,7 +33,7 @@
     <!-- DECODIERUNGSBEREICH -->
     <div class="row">
 
-        <div class="col-md-12"></div>
+        <div class="col-md-12"><br /><br /></div>
     </div>
 
     <div class="row">
@@ -43,7 +43,7 @@
             <legend>Ciphertext</legend>
             <textarea id="ciphertext" class="form-control"></textarea><br />
             <button class="btn btn-primary" id="analyzeCiphertext">Analyze Ciphertext</button><br /><br />
-            <button class="btn btn-primary" id="decrypt">Decrypt</button> using backshift <input name="backshift" id="backshift" value="" type="text" />
+            <button class="btn btn-primary" id="decrypt">Decrypt</button> using backshift <input name="backshift" id="backshift" type="text" />
         </div>
 
         <div class="col-md-6">
@@ -83,7 +83,7 @@
     {
         var histogram_prepare = [];
 
-        for (var i = 0; len = text.length; i < len; i++){
+        for (var i = 0, len = text.length; i < len; i++){
 
             var letter = text[i];
             if (letter.match(/[a-z]/i))
@@ -115,33 +115,10 @@
         html += "</table>";
         return html;
     }
-    //TODO: Bart-chart Libraty einbinden
 
     //DECRYPTION
-    document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
 
-        e.preventDefault();
-        e.stopPropagation();
-
-        var text = document.getElementById("ciphertext").value;
-        var histogram = createHistogramValues(text);
-
-        document.getElementById("chartCiphertext").innerHTML = createHTMLTable(histogram);
-    });
-
-    document.getElementById("decrypt").addEventListener("click", function (e) {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        var ciphertext = document.getElementById("ciphertext").value;
-        var shift = document.getElementById("backshift").value;
-
-        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(ciphertext, shift);
-    });
-
-    function createAlphabeticalShift(text, shift)
-    {
+    function createAlphabeticalShift(text, shift) {
         shift = parseInt(shift);
         if (shift < 0) shift = 26 + shift;
 
@@ -166,5 +143,29 @@
         }
         return output;
     }
+
+    document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        var text = document.getElementById("ciphertext").value;
+        var histogram = createHistogramValues(text);
+
+        document.getElementById("chartCiphertext").innerHTML = createHTMLTable(histogram);
+    });
+
+    document.getElementById("decrypt").addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        var ciphertext = document.getElementById("ciphertext").value;
+        var shift = document.getElementById("backshift").value;
+
+        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(ciphertext, shift);
+    });
+
+    
 
 </script>
