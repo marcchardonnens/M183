@@ -9,6 +9,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Cesar Cipher</h1>
+            <p>Nur positive Zahlen eingeben!</p>
         </div>
     </div>
 
@@ -43,7 +44,7 @@
             <legend>Ciphertext</legend>
             <textarea id="ciphertext" class="form-control"></textarea><br />
             <button class="btn btn-primary" id="analyzeCiphertext">Analyze Ciphertext</button><br /><br />
-            <button class="btn btn-primary" id="decrypt">Decrypt</button> using backshift <input name="backshift" id="backshift" type="text" />
+            <button class="btn btn-primary" id="decrypt">Decrypt</button> using shift <input name="backshift" id="backshift" type="text" />
         </div>
 
         <div class="col-md-6">
@@ -76,7 +77,7 @@
         var plaintext = document.getElementById("plaintext").value;
         var shift = document.getElementById("shift").value;
 
-        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(plaintext, shift);
+        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(plaintext, shift, false);
     });
 
     function createHistogramValues(text)
@@ -118,7 +119,10 @@
 
     //DECRYPTION
 
-    function createAlphabeticalShift(text, shift) {
+    function createAlphabeticalShift(text, shift, decrypt) {
+        if (decrypt == true) {
+            shift = shift * (-1);
+        }
         shift = parseInt(shift);
         if (shift < 0) shift = 26 + shift;
 
@@ -163,7 +167,7 @@
         var ciphertext = document.getElementById("ciphertext").value;
         var shift = document.getElementById("backshift").value;
 
-        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(ciphertext, shift);
+        document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(ciphertext, shift, true);
     });
 
     
