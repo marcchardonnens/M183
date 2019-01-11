@@ -14,12 +14,13 @@ namespace OTPEmail
         {
             var client = new SmtpClient("smtp.mailgun.org", 587)
             {
-                Credentials = new System.Net.NetworkCredential("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
-                EnableSsl = true
+                Credentials = new System.Net.NetworkCredential("postmaster@m183.tk", "a0dd02505f71a90ea50aff0d7f60546a-060550c6-0d2b2677"),
+                EnableSsl = true,
+               
                 
                
             };
-            client.Send("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "marcchardonnens1@gmail.com", "test", "testbody");
+            client.Send("postmaster@m183.tk", "marcchardonnens1@gmail.com", "test", "testbody");
             Console.WriteLine("Sent");
             Console.ReadLine();
 

