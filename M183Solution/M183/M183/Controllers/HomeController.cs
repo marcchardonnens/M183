@@ -34,6 +34,10 @@ namespace M183.Controllers
             return View();
         }
 
+        public ActionResult UiRedress()
+        {
+            return View();
+        }
 
 
         [HttpGet]

