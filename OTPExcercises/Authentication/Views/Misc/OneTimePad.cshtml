@@ -162,32 +162,38 @@
                 var cr = parseInt(input.charCodeAt(i));
 
                 if ((cr >= 65) && (cr <= 90)) {
-                    var c = parseInt(cr - 65);
-                    var key_char_shift = parseInt(key[i].charCodeAt(0) - 65);
+                    var c = parseInt(cr - 64);
+                    var key_char_shift = parseInt(key[i].charCodeAt(0) - 64);
 
                     var new_char_position = (c - key_char_shift) % 26;
+
                     if (new_char_position < 0)
                         new_char_position += 26;
-
-                    output += String.fromCharCode(new_char_position + 65);
+                    
+                    output += String.fromCharCode(new_char_position + 64);
                 }
 
                 else if ((cr >= 97) && (cr <= 122)) {
-                    var c = parseInt(cr - 97);
-                    var key_char_shift = parseInt(key[i].charCodeAt(0) - 97);
+                    var c = parseInt(cr - 96);
+                    var key_char_shift = parseInt(key[i].charCodeAt(0) - 96);
+
+                    console.log(c);
+                    console.log(key_char_shift);
 
                     var new_char_position = (c - key_char_shift) % 26;
+
                     if (new_char_position < 0)
                         new_char_position += 26;
 
-                    output += String.fromCharCode(new_char_position + 97);
+                    console.log(new_char_position);
+                    output += String.fromCharCode(new_char_position + 96);
                 }
             }
         }
         return output;
     }
 
-    document.getElementById("analyze_ciphertext").addEventListener("click", function (e) {
+    document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
 
         e.preventDefault();
         e.stopPropagation();
@@ -204,7 +210,7 @@
         e.stopPropagation();
 
         var plaintext = document.getElementById("ciphertext").value;
-        var key = document.getElementById("decryptkey").value;
+        var key = document.getElementById("decryptKey").value;
 
         document.getElementById("ciphertext").innerHTML = decryptOneTimePad(plaintext, key);
     });
