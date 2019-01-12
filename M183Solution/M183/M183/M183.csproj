@@ -296,6 +296,7 @@
     <Content Include="Views\Misc\CesarCipher.cshtml" />
     <Content Include="Views\Misc\OneTimePad.cshtml" />
     <Content Include="Views\Misc\VigenereCipher.cshtml" />
+    <Content Include="Views\Misc\XssVulnerableLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
