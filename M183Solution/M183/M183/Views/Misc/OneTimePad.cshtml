@@ -112,16 +112,19 @@
         var key = '';
         for (var k = 0; k < input.length; k++)
         {
+            //get char code from input
             var c = input[k].charCodeAt(0);
 
+            //is input a letter
             if ((c >= 65) && (c <= 90))
             {
-                key += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+                //random number between 0 and 25, add 65 so it fits char codes
+                key += String.fromCharCode(Math.floor(Math.random() * 25) + 65);
             }
 
             else if ((c >= 97) && (c <= 122))
             {
-                key += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+                key += String.fromCharCode(Math.floor(Math.random() * 25) + 97);
             }
         }
 
@@ -132,17 +135,20 @@
 
             if (char.match(/[a-z]/i))
             {
+                //get char code at current position
                 var c = parseInt(input.charCodeAt(i));
-                var key_char_shift = parseInt(input.charCodeAt(i));
+                var key_char_shift = parseInt(key.charCodeAt(i));
 
+                //is input a letter
                 if ((c >= 65) && (c <= 90))
                 {
-                    output += String.fromCharCode((c - 65 + key_char_shift - 65) % 26 + 65);
+                    //generate encrypted char code
+                    output += String.fromCharCode((c - 64 + key_char_shift - 64) % 26 + 64);
                 }
 
                 else if ((c >= 97) && (c <= 122))
                 {
-                    output += String.fromCharCode((c - 97 + key_char_shift - 97) % 26 + 97);
+                    output += String.fromCharCode((c - 96 + key_char_shift - 96) % 26 + 96);
                 }
             }
         }
