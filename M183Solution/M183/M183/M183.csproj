@@ -226,10 +226,15 @@
     <Compile Include="Migrations\201901130138111_loginlog.Designer.cs">
       <DependentUpon>201901130138111_loginlog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901131103070_loginlog1.cs" />
+    <Compile Include="Migrations\201901131103070_loginlog1.Designer.cs">
+      <DependentUpon>201901131103070_loginlog1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MiscViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -301,6 +306,7 @@
     <Content Include="Views\Misc\OneTimePad.cshtml" />
     <Content Include="Views\Misc\VigenereCipher.cshtml" />
     <Content Include="Views\Misc\XssVulnerableLogin.cshtml" />
+    <Content Include="Views\Misc\AllUserLogins.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901130138111_loginlog.resx">
       <DependentUpon>201901130138111_loginlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131103070_loginlog1.resx">
+      <DependentUpon>201901131103070_loginlog1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

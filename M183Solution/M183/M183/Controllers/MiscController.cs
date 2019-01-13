@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using M183.Models;
 
 namespace M183.Controllers
 {
@@ -88,6 +89,24 @@ namespace M183.Controllers
                 ViewBag.Message = "Table is empty";
             }
             return View();
+        }
+
+        public ActionResult AllUserLogins(AllUserLoginViewModel model)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            List<AllUserLoginViewModel> models = new List<AllUserLoginViewModel>();
+
+            foreach(LoginLog log in context.LoginLogs)
+            {
+                AllUserLoginViewModel vm = new AllUserLoginViewModel();
+                vm.Email = log.Email;
+                vm.Success = log.Success;
+                vm.TimeCreated = log.TimeCreated;
+                models.Add(vm);
+            }
+            return View(models);
+
         }
 
     }
