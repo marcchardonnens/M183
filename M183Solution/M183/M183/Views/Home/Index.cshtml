@@ -25,13 +25,14 @@
             @Html.ActionLink("UI Redress", "UiRedress", "Home")
         </p>
         <p>
-            @Html.ActionLink("OTP", "login", "Home")
+            @Html.ActionLink("OTP", "login", "Account")
         </p>
         <p>
             @Html.ActionLink("TOTP", "index", "Manage")
+            <span>User muss bereits eingeloggt sein</span>
         </p>
         <p>
-            @Html.ActionLink("SSO", "index", "Home")
+            @Html.ActionLink("SSO", "login", "Account")
         </p>
         <p>
             @Html.ActionLink("Database XSS / SQL Injection", "XssVulnerableLogin", "Misc")
@@ -46,7 +47,7 @@
             @Html.ActionLink("One Time Pad", "OneTimePad", "Misc")
         </p>
         <p>
-            @Html.ActionLink("Logging und Audit Trails", "index", "Home")
+            @Html.ActionLink("Logging und Audit Trails", "AllUserLogins", "Misc")
         </p>
     </div>
 
