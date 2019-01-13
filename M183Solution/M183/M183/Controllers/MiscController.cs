@@ -77,17 +77,17 @@ namespace M183.Controllers
 
             if (reader.HasRows)
             {
-                ViewBag.Message = "success";
+                ViewBag.Feedback = "success";
                 while (reader.Read())
                 {
-                    ViewBag.Message += reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2);
+                    ViewBag.Feedback += reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2);
                 }
             }
             else
             {
-                ViewBag.Message = "Table is empty";
+                ViewBag.Feedback = "Table is empty";
             }
-            return View();
+            return RedirectToAction("XssVulnerableLogin");
         }
 
     }
