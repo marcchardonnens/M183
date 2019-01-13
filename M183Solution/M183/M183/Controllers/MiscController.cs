@@ -34,7 +34,7 @@ namespace M183.Controllers
         [HttpPost]
         public ActionResult XssVulnerableLogin(string username, string password)
         {
-            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=..\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
 
             SqlCommand c = new SqlCommand();
             SqlDataReader reader;
@@ -69,26 +69,26 @@ namespace M183.Controllers
             SqlCommand c = new SqlCommand();
             SqlDataReader reader;
 
-            c.CommandText = "INSERT INTO [dbo].[Feedback] SET [Feedback] = '" + feedback + "'";
+            c.CommandText = "INSERT INTO [dbo].[Feedback] ([Feedback]) VALUES('" + feedback + "')";
             c.Connection = db;
-
+           
             db.Open();
 
             reader = c.ExecuteReader();
 
             if (reader.HasRows)
             {
-                ViewBag.Message = "success";
+                ViewBag.Feedback = "success";
                 while (reader.Read())
                 {
-                    ViewBag.Message += reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2);
+                    ViewBag.Feedback += reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2);
                 }
             }
             else
             {
-                ViewBag.Message = "Table is empty";
+                ViewBag.Feedback = "Table is empty";
             }
-            return View();
+            return RedirectToAction("XssVulnerableLogin");
         }
 
         public ActionResult AllUserLogins(AllUserLoginViewModel model)
