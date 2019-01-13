@@ -11,32 +11,47 @@
     <div class="col-lg-12">
         <h1>Übungsaufgaben</h1>
         <p>Hier sind alle Übungsaufgaben gesammelt, die während dem Modul 183 gemacht wurden. Der Sourcecode ist auf <a href="https://github.com/surfer412/M183">https://github.com/surfer412/M183</a> erhältlich.</p>
-        <p><a class="btn btn-default" href="/Home/Aufgabensammlung">Aufgabensammlung &raquo;</a></p>
     </div>
+
+    <div class="col-lg-12">
+        <br />
+        <p>
+            @Html.ActionLink("XSS Keylogger", "KeyLogger", "Home")
+        </p>
+        <p>
+            @Html.ActionLink("XSS Fakelogin / UI Redress", "UiRedress", "Home")
+        </p>
+        <p>
+            @Html.ActionLink("UI Redress", "UiRedress", "Home")
+        </p>
+        <p>
+            @Html.ActionLink("OTP", "login", "Home")
+        </p>
+        <p>
+            @Html.ActionLink("TOTP", "index", "Manage")
+        </p>
+        <p>
+            @Html.ActionLink("SSO", "index", "Home")
+        </p>
+        <p>
+            @Html.ActionLink("Database XSS / SQL Injection", "XssVulnerableLogin", "Misc")
+        </p>
+        <p>
+            @Html.ActionLink("Cesar", "CesarCipher", "Misc")
+        </p>
+        <p>
+            @Html.ActionLink("Vigenere", "VigenereCipher", "Misc")
+        </p>
+        <p>
+            @Html.ActionLink("One Time Pad", "OneTimePad", "Misc")
+        </p>
+        <p>
+            @Html.ActionLink("Logging und Audit Trails", "index", "Home")
+        </p>
+    </div>
+
 
     <br />
 
-    <div>-- was bessers da unne ane mache pls</div>
-
-
-
-    <div class="col-md-4">
-        <h2>Keylogger</h2>
-        <div>
-            @Html.ActionLink("KeyLogger", "KeyLogger", "Home")
-        </div>
-        <p>
-            @ViewBag.KeyloggerLastLine
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>placeholder</h2>
-        <p>placeholder</p>
-        <p><a class="btn btn-default" href="">placeholder &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>placeholder</h2>
-        <p>placeholder</p>
-        <p><a class="btn btn-default" href="">placeholder &raquo;</a></p>
-    </div>
+    
 </div>
