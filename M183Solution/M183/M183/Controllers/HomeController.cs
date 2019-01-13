@@ -28,11 +28,7 @@ namespace M183.Controllers
 
             return View();
         }
-
-        public ActionResult Aufgabensammlung()
-        {
-            return View();
-        }
+        
 
         public ActionResult UiRedress()
         {
