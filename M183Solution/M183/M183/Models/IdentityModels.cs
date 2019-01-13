@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Cryptography;
+using System;
 
 namespace M183.Models
 {
@@ -21,8 +22,17 @@ namespace M183.Models
         }
     }
 
+    public class LoginLog
+    {
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public DateTime TimeCreated { get; set; }
+        public bool Success { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<LoginLog> LoginLogs { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
