@@ -7,6 +7,8 @@ namespace M183.Models
 {
     public class IndexViewModel
     {
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         public bool HasPassword { get; set; }
         public bool IsVerified { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
@@ -80,6 +82,8 @@ namespace M183.Models
         public string PhoneNumber { get; set; }
     }
 
+    //Tutorial 5-OTP
+    //Tutorial 5-TOTP
     public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }

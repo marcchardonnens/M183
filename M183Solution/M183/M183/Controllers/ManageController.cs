@@ -52,7 +52,8 @@ namespace M183.Controllers
             }
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -110,7 +111,7 @@ namespace M183.Controllers
             return View();
         }
 
-        //
+        //Tutorial 5-OTP
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -134,7 +135,8 @@ namespace M183.Controllers
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,7 +151,8 @@ namespace M183.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -164,7 +167,7 @@ namespace M183.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
+        //Tutorial 5-OTP
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
@@ -173,7 +176,7 @@ namespace M183.Controllers
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
-        //
+        //Tutorial 5-OTP
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -198,7 +201,7 @@ namespace M183.Controllers
             return View(model);
         }
 
-        //
+        //Tutorial 5-OTP
         // POST: /Manage/RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -303,7 +306,7 @@ namespace M183.Controllers
             });
         }
 
-        //
+        //Tutorial 5-TOTP
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -313,7 +316,7 @@ namespace M183.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
+        //Tutorial 5-TOTP
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -336,7 +339,9 @@ namespace M183.Controllers
 
             base.Dispose(disposing);
         }
+        
 
+        //Tutorial 5-TOTP
         public ActionResult AddGoogleAuthenticator()
         {
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
@@ -353,7 +358,8 @@ namespace M183.Controllers
             ViewBag.QrCode = setupInfo.ManualEntryKey;
             return View();
         }
-
+        
+        //Tutorial 5-TOTP
         [HttpPost]
         public ActionResult AddGoogleAuthenticator(string CodeInput)
         {
@@ -374,11 +380,11 @@ namespace M183.Controllers
                 return RedirectToAction("AddGoogleAuthenticator");
             }
         }
-
+        
+        //Tutorial 5-TOTP
         [HttpPost]
         public ActionResult RemoveGoogleAuthenticator()
         {
-
             ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
             user.GoogleAuthVerified = false;
             user.GoogleAuthSecret = "";

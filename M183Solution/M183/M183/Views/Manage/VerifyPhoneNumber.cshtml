@@ -5,6 +5,10 @@
 
 <h2>@ViewBag.Title.</h2>
 
+@*
+    //Tutorial 5-OTP
+*@
+
 @using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()

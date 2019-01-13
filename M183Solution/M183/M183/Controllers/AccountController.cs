@@ -117,7 +117,8 @@ namespace M183.Controllers
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe, Email = email});
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
@@ -178,6 +179,7 @@ namespace M183.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //Tutorial 5 - OTP
                     await SendVerificationMail(user);
 
                     return RedirectToAction("Index", "Home");
@@ -202,7 +204,7 @@ namespace M183.Controllers
 
         }
 
-        //
+        //Tutorial 5-OTP
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -327,7 +329,8 @@ namespace M183.Controllers
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
@@ -347,7 +350,8 @@ namespace M183.Controllers
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe, Email = model.Email});
         }
 
-        //
+        //Tutorial 5-OTP
+        //Tutorial 5-TOTP
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -380,7 +384,7 @@ namespace M183.Controllers
             }
         }
 
-        //
+        //Tutorial 5-OTP
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
@@ -489,6 +493,7 @@ namespace M183.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //Tutorial 5-OTP
         private async Task SendVerificationMail(ApplicationUser user)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
