@@ -8,6 +8,7 @@
 <div class="row">
     <h1>One Time Pad</h1>
 </div>
+<!-- encryption area -->
 <div class="row">
     <div class="col-md-6">
         <br /><br />
@@ -20,7 +21,7 @@
     </div>
     <div class="col-md-6">
         <br /><br />
-        <legend>Histogram Plaintext</legend>
+        <legend>Analyzed Plaintext</legend>
         <div id="chartPlaintext"></div>
     </div>
 </div>
@@ -29,6 +30,7 @@
         <br /><br />
     </div>
 </div>
+<!-- decryption area -->
 <div class="row">
     <div class="col-md-6">
         <br />
@@ -43,13 +45,13 @@
     </div>
     <div class="col-md-6">
         <br />
-        <legend>Histogram Chiphertext</legend>
+        <legend>Analyzed Chiphertext</legend>
         <div id="chartCiphertext"></div>
     </div>
 </div>
 <script>
+    //call analyze function
     document.getElementById("analyzePlaintext").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -59,8 +61,8 @@
         document.getElementById("chartPlaintext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call encrypt function
     document.getElementById("encrypt").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -70,6 +72,7 @@
         document.getElementById("keyOneTimePad").innerHTML = encrypted_values.key;
     });
 
+    //analyze values
     function createHistogramValues(text)
     {
         var histogram_prepare = [];
@@ -77,6 +80,7 @@
         for (var i = 0, len = text.length; i < len; i++){
 
             var letter = text[i];
+            //check if current position is a character
             if (letter.match(/[a-z]/i))
             {
                 histogram_prepare[letter] = (histogram_prepare[letter] || 0) + 1;
@@ -94,6 +98,7 @@
 
     }
 
+    //fill histogram data in table
     function createHTMLTable(histogram)
     {
         var html = "<table>";
@@ -108,7 +113,7 @@
     }
 
 
-
+    //encrypt
     function encryptOneTimePad(input)
     {
         var key = '';
@@ -126,6 +131,7 @@
 
             else if ((c >= 97) && (c <= 122))
             {
+                //random number between 0 and 25, add 65 so it fits char codes
                 key += String.fromCharCode(Math.floor(Math.random() * 25) + 97);
             }
         }
@@ -135,21 +141,23 @@
         {
             var char = input[i];
 
+            //check if current position is a character
             if (char.match(/[a-z]/i))
             {
                 //get char code at current position
                 var c = parseInt(input.charCodeAt(i));
                 var key_char_shift = parseInt(key.charCodeAt(i));
 
-                //is input a letter
+                //javascript character codes
                 if ((c >= 65) && (c <= 90))
                 {
                     //generate encrypted char code
                     output += String.fromCharCode((c - 64 + key_char_shift - 64) % 26 + 64);
                 }
-
+                //ascii codes
                 else if ((c >= 97) && (c <= 122))
                 {
+                    //generate encrypted char code
                     output += String.fromCharCode((c - 96 + key_char_shift - 96) % 26 + 96);
                 }
             }
@@ -159,41 +167,43 @@
     }
 
 
-    //DECRYPT
-
+    //decrypt
     function decryptOneTimePad(input, key) {
         var output = "";
         for (var i = 0; i < input.length; i++) {
             var char = input[i];
 
+            //check if current position is a character
             if (char.match(/[a-z]/i)) {
                 var cr = parseInt(input.charCodeAt(i));
-
+                //javascript character codes
                 if ((cr >= 65) && (cr <= 90)) {
+                    //turn code into position in alphabet
                     var c = parseInt(cr - 64);
                     var key_char_shift = parseInt(key[i].charCodeAt(0) - 64);
 
+                    //make sure position is between 1 and 26
                     var new_char_position = (c - key_char_shift) % 26;
 
                     if (new_char_position < 0)
                         new_char_position += 26;
 
+                    //revert position in alphabet back to code
                     output += String.fromCharCode(new_char_position + 64);
                 }
-
+                //ascii codes
                 else if ((cr >= 97) && (cr <= 122)) {
+                    //turn code into position in alphabet
                     var c = parseInt(cr - 96);
                     var key_char_shift = parseInt(key[i].charCodeAt(0) - 96);
 
-                    console.log(c);
-                    console.log(key_char_shift);
-
+                    //make sure position is between 1 and 26
                     var new_char_position = (c - key_char_shift) % 26;
 
                     if (new_char_position < 0)
                         new_char_position += 26;
 
-                    console.log(new_char_position);
+                    //revert position in alphabet back to code
                     output += String.fromCharCode(new_char_position + 96);
                 }
             }
@@ -201,6 +211,7 @@
         return output;
     }
 
+    //call analyze function
     document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -212,6 +223,7 @@
         document.getElementById("chartCiphertext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call decrypt function
     document.getElementById("decrypt").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -222,7 +234,5 @@
 
         document.getElementById("ciphertext").innerHTML = decryptOneTimePad(plaintext, key);
     });
-
-
 </script>
 

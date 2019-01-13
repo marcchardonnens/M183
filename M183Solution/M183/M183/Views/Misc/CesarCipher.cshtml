@@ -5,7 +5,7 @@
 
 <!-- Tutorial 11-Cesar-Vinegere -->
 <div class="container">
-    <!-- VERSCHLÜSSELUNGSBEREICH -->
+    <!-- encryption area -->
     <div class="row">
         <div class="col-md-12">
             <h1>Cesar Cipher</h1>
@@ -25,13 +25,13 @@
 
         <div class="col-md-6">
             <br />
-            <legend>Histogram Plaintext</legend>
+            <legend>Analyzed Plaintext</legend>
             <div id="chartPlaintext"></div>
         </div>
 
     </div>
 
-    <!-- DECODIERUNGSBEREICH -->
+    <!-- decryption area -->
     <div class="row">
 
         <div class="col-md-12"><br /><br /></div>
@@ -49,7 +49,7 @@
 
         <div class="col-md-6">
             <br />
-            <legend>Histogram Ciphertext</legend>
+            <legend>Analyzed Ciphertext</legend>
             <div id="chartCiphertext"></div>
         </div>
 
@@ -58,6 +58,7 @@
 </div>
 
 <script>
+    //call analyze function
     document.getElementById("analyzePlaintext").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -69,6 +70,7 @@
         document.getElementById("chartPlaintext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call encrypt function
     document.getElementById("encrypt").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -80,6 +82,7 @@
         document.getElementById("ciphertext").innerHTML = createAlphabeticalShift(plaintext, shift, false);
     });
 
+    //analyze values
     function createHistogramValues(text)
     {
         var histogram_prepare = [];
@@ -87,6 +90,7 @@
         for (var i = 0, len = text.length; i < len; i++){
 
             var letter = text[i];
+            //check if current position is a character
             if (letter.match(/[a-z]/i))
             {
                 histogram_prepare[letter] = (histogram_prepare[letter] || 0) + 1;
@@ -104,6 +108,7 @@
 
     }
 
+    //fill histogram data in table
     function createHTMLTable(histogram)
     {
         var html = "<table>";
@@ -117,12 +122,13 @@
         return html;
     }
 
-    //DECRYPTION
-
+    //decrypt and encrypt
     function createAlphabeticalShift(text, shift, decrypt) {
+        //turn key into negative number for decryption
         if (decrypt == true) {
             shift = shift * (-1);
         }
+
         shift = parseInt(shift);
         if (shift < 0) shift = 26 + shift;
 
@@ -132,22 +138,25 @@
             var c = text[i];
             var tempchar = "";
 
+            //check if current position is a character
             if (c.match(/[a-z]/i)) {
                 var code = text.charCodeAt(i);
 
-                if ((code >= 65) && (code <= 90))
+                //javascript character codes
+                if ((code >= 65) && (code <= 90)){
                     tempchar = String.fromCharCode(((code - 65 + shift) % 26) + 65);
-
-                else if ((code >= 97) && (code <= 122))
+                } 
+                //ascii codes
+                else if ((code >= 97) && (code <= 122)) {
                     tempchar = String.fromCharCode(((code - 97 + shift) % 26) + 97);
-
+                }
             }
-            //Apend
             output += tempchar;
         }
         return output;
     }
 
+    //call analyze function
     document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -159,6 +168,7 @@
         document.getElementById("chartCiphertext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call decrypt function
     document.getElementById("decrypt").addEventListener("click", function (e) {
 
         e.preventDefault();

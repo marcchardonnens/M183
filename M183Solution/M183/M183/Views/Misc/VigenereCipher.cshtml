@@ -6,7 +6,7 @@
 <!-- Tutorial 11-Cesar-Vinegere -->
 
 <div class="container">
-    <!-- VERSCHLÜSSELUNGSBEREICH -->
+    <!-- encryption area -->
     <div class="row">
         <div class="col-md-12">
             <h1>Vigenere Cipher</h1>
@@ -26,12 +26,12 @@
 
         <div class="col-md-6">
             <br />
-            <legend>Histogram Plaintext</legend>
+            <legend>Analyzed Plaintext</legend>
             <div id="chartPlaintext"></div>
         </div>
     </div>
 
-    <!-- DECODIERUNGSBEREICH -->
+    <!-- encryption area -->
     <div class="row">
         <div class="col-md-12"><br /><br /></div>
     </div>
@@ -49,13 +49,14 @@
 
         <div class="col-md-6">
             <br />
-            <legend>Histogram Ciphertext</legend>
+            <legend>Analyzed Ciphertext</legend>
             <div id="chartCiphertext"></div>
         </div>
     </div>
 </div>
 
 <script>
+    //call analyze function
     document.getElementById("analyzePlaintext").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -67,6 +68,7 @@
         document.getElementById("chartPlaintext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call encrypt function
     document.getElementById("encrypt").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -78,6 +80,7 @@
         document.getElementById("ciphertext").innerHTML = createVigenere(plaintext, key);
     });
 
+    //analyze values
     function createHistogramValues(text)
     {
         var histogram_prepare = [];
@@ -85,6 +88,7 @@
         for (var i = 0, len = text.length; i < len; i++) {
 
             var letter = text[i];
+            //check if current position is a character
             if (letter.match(/[a-z]/i))
             {
                 histogram_prepare[letter] = (histogram_prepare[letter] || 0) + 1;
@@ -102,6 +106,7 @@
 
     }
 
+    //fill histogram data in table
     function createHTMLTable(histogram)
     {
         var html = "<table>";
@@ -115,22 +120,21 @@
         return html;
     }
 
-    //DECRYPTION
-
+    //encrypt
     function createVigenere(input, key) {
         var output = "";
         for (var i = 0, j = 0; i < input.length; i++) {
             var char = input[i];
-
+            //check if current position is a character
             if (char.match(/[a-z]/i)) {
                 var c = input.charCodeAt(i);
                 var key_char_shift = key[j % key.length].charCodeAt(0);
-
+                //javascript character codes
                 if ((c >= 65) && (c <= 90)) {
                     output += String.fromCharCode((c - 65 + key_char_shift - 65) % 26 + 65);
                     j++;
                 }
-
+                //ascii codes
                 else if ((c >= 97) && (c <= 122)) {
                     output += String.fromCharCode((c - 97 + key_char_shift - 97) % 26 + 97);
                     j++;
@@ -140,34 +144,42 @@
         return output;
     }
 
+    //decrypt
     function decryptVigenere(input, key) {
         var output = "";
         for (var i = 0, j = 0; i < input.length; i++) {
             var char = input[i];
 
+            //check if current position is a character
             if (char.match(/[a-z]/i)) {
                 var cr = parseInt(input.charCodeAt(i));
-
+                //javascript character codes
                 if ((cr >= 65) && (cr <= 90)) {
+                    //turn code into position in alphabet
                     var c = parseInt(cr - 65);
                     var key_char_shift = parseInt(key[i].charCodeAt(0) - 65);
 
+                    //encrypt
                     var new_char_position = (c - key_char_shift) % 26;
                     if (new_char_position < 0)
                         new_char_position += 26;
 
+                    //revert position in alphabet back to code
                     output += String.fromCharCode(new_char_position + 65);
                     j++;
                 }
-
+                //ascii codes
                 else if ((cr >= 97) && (cr <= 122)) {
+                    //turn code into position in alphabet
                     var c = parseInt(cr - 97);
                     var key_char_shift = parseInt(key[j % key.length].charCodeAt(0) - 97);
 
+                    //decrypt
                     var new_char_position = (c - key_char_shift) % 26;
                     if (new_char_position < 0)
                         new_char_position += 26;
 
+                    //revert position in alphabet back to code
                     output += String.fromCharCode(new_char_position + 97);
                     j++;
                 }
@@ -176,6 +188,7 @@
         return output;
     }
 
+    //call analyze function
     document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -187,6 +200,7 @@
         document.getElementById("chartCiphertext").innerHTML = createHTMLTable(histogram);
     });
 
+    //call decrypt function
     document.getElementById("decrypt").addEventListener("click", function (e) {
 
         e.preventDefault();
@@ -197,7 +211,4 @@
 
         document.getElementById("ciphertext").innerHTML = decryptVigenere(plaintext, key);
     });
-
-
-
 </script>
