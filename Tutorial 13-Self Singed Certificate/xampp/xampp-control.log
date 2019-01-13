@@ -1,0 +1,193 @@
+19:18:11  [main] 	Initialisere Control Panel
+19:18:11  [main] 	Windows Version:  Pro  64-bit
+19:18:11  [main] 	XAMPP Version: 5.6.19
+19:18:11  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+19:18:11  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+19:18:11  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+19:18:11  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+19:18:11  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+19:18:11  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+19:18:11  [main] 	Voraussetzungen werden geprüft
+19:18:16  [main] 	Alle Voraussetzungen sind erfüllt
+19:18:16  [main] 	Initialisiere Module
+19:18:16  [main] 	Starte Check-Timer
+19:18:16  [main] 	Control Panel bereit
+19:19:03  [Apache] 	Versuche Apache zu starten...
+19:19:03  [Apache] 	Statusänderung erkannt: gestartet
+19:19:06  [mysql] 	Versuche MySQL zu starten...
+19:19:06  [mysql] 	Statusänderung erkannt: gestartet
+21:51:13  [main] 	Deinitialisiere Module
+21:51:13  [main] 	Deinitialisiere Control Panel
+
+13:23:45  [main] 	Initialisere Control Panel
+13:23:45  [main] 	Windows Version:  Pro  64-bit
+13:23:46  [main] 	XAMPP Version: 5.6.19
+13:23:46  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+13:23:46  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+13:23:46  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+13:23:46  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+13:23:46  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+13:23:46  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+13:23:46  [main] 	Voraussetzungen werden geprüft
+13:23:51  [main] 	Alle Voraussetzungen sind erfüllt
+13:23:51  [main] 	Initialisiere Module
+13:23:51  [main] 	Starte Check-Timer
+13:23:51  [main] 	Control Panel bereit
+13:23:55  [Apache] 	Versuche Apache zu starten...
+13:23:55  [Apache] 	Statusänderung erkannt: gestartet
+13:24:00  [mysql] 	Versuche MySQL zu starten...
+13:24:00  [mysql] 	Statusänderung erkannt: gestartet
+13:29:40  [main] 	Deinitialisiere Module
+13:29:40  [main] 	Deinitialisiere Control Panel
+
+14:00:54  [main] 	Initialisere Control Panel
+14:00:54  [main] 	Windows Version:  Pro  64-bit
+14:00:54  [main] 	XAMPP Version: 5.6.19
+14:00:54  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+14:00:54  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+14:00:54  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+14:00:54  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+14:00:54  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+14:00:54  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+14:00:54  [main] 	Voraussetzungen werden geprüft
+14:00:54  [main] 	Alle Voraussetzungen sind erfüllt
+14:00:54  [main] 	Initialisiere Module
+14:00:54  [main] 	Starte Check-Timer
+14:00:54  [main] 	Control Panel bereit
+20:05:06  [main] 	Deinitialisiere Module
+20:05:06  [main] 	Deinitialisiere Control Panel
+
+19:15:35  [main] 	Initialisere Control Panel
+19:15:35  [main] 	Windows Version:  Pro  64-bit
+19:15:35  [main] 	XAMPP Version: 5.6.19
+19:15:35  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+19:15:35  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+19:15:35  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+19:15:35  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+19:15:35  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+19:15:35  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+19:15:35  [main] 	Voraussetzungen werden geprüft
+19:15:37  [main] 	Alle Voraussetzungen sind erfüllt
+19:15:37  [main] 	Initialisiere Module
+19:15:37  [main] 	Starte Check-Timer
+19:15:37  [main] 	Control Panel bereit
+19:15:42  [Apache] 	Versuche Apache zu starten...
+19:15:42  [Apache] 	Statusänderung erkannt: gestartet
+19:15:43  [mysql] 	Versuche MySQL zu starten...
+19:15:43  [mysql] 	Statusänderung erkannt: gestartet
+20:27:47  [Apache] 	stoppe Modul Apache (PID: 2364)
+20:27:47  [Apache] 	stoppe Modul Apache (PID: 3444)
+20:27:47  [Apache] 	Statusänderung erkannt: gestoppt
+20:27:48  [mysql] 	Versuche MySQL zu beenden...
+20:27:50  [mysql] 	Statusänderung erkannt: gestoppt
+22:16:44  [main] 	Deinitialisiere Module
+22:16:44  [main] 	Deinitialisiere Control Panel
+
+21:46:56  [main] 	Initialisere Control Panel
+21:46:56  [main] 	Windows Version:  Pro  64-bit
+21:46:56  [main] 	XAMPP Version: 5.6.19
+21:46:56  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+21:46:56  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+21:46:56  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+21:46:56  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+21:46:56  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+21:46:56  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+21:46:56  [main] 	Voraussetzungen werden geprüft
+21:46:57  [main] 	Alle Voraussetzungen sind erfüllt
+21:46:57  [main] 	Initialisiere Module
+21:46:57  [main] 	Starte Check-Timer
+21:46:57  [main] 	Control Panel bereit
+21:47:01  [Apache] 	Versuche Apache zu starten...
+21:47:01  [Apache] 	Statusänderung erkannt: gestartet
+21:47:03  [mysql] 	Versuche MySQL zu starten...
+21:47:03  [mysql] 	Statusänderung erkannt: gestartet
+22:23:03  [main] 	Deinitialisiere Module
+22:23:03  [main] 	Deinitialisiere Control Panel
+
+07:38:40  [main] 	Initialisere Control Panel
+07:38:40  [main] 	Windows Version:  Pro  64-bit
+07:38:40  [main] 	XAMPP Version: 5.6.19
+07:38:40  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+07:38:40  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+07:38:40  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+07:38:40  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+07:38:40  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+07:38:40  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+07:38:40  [main] 	Voraussetzungen werden geprüft
+07:38:42  [main] 	Alle Voraussetzungen sind erfüllt
+07:38:42  [main] 	Initialisiere Module
+07:38:42  [main] 	Starte Check-Timer
+07:38:42  [main] 	Control Panel bereit
+07:38:44  [Apache] 	Versuche Apache zu starten...
+07:38:45  [Apache] 	Statusänderung erkannt: gestartet
+07:38:46  [mysql] 	Versuche MySQL zu starten...
+07:38:46  [mysql] 	Statusänderung erkannt: gestartet
+08:38:33  [Apache] 	stoppe Modul Apache (PID: 4464)
+08:38:33  [Apache] 	stoppe Modul Apache (PID: 17800)
+08:38:33  [Apache] 	Statusänderung erkannt: gestoppt
+08:38:34  [mysql] 	Versuche MySQL zu beenden...
+08:38:37  [mysql] 	Statusänderung erkannt: gestoppt
+08:44:29  [main] 	Deinitialisiere Module
+08:44:29  [main] 	Deinitialisiere Control Panel
+
+17:11:09  [main] 	Initialisere Control Panel
+17:11:09  [main] 	Windows Version:  Pro  64-bit
+17:11:09  [main] 	XAMPP Version: 5.6.19
+17:11:09  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+17:11:09  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+17:11:09  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+17:11:09  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+17:11:09  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+17:11:09  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+17:11:09  [main] 	Voraussetzungen werden geprüft
+17:11:10  [main] 	Alle Voraussetzungen sind erfüllt
+17:11:10  [main] 	Initialisiere Module
+17:11:10  [main] 	Starte Check-Timer
+17:11:10  [main] 	Control Panel bereit
+17:11:15  [Apache] 	Versuche Apache zu starten...
+17:11:15  [Apache] 	Statusänderung erkannt: gestartet
+17:11:16  [mysql] 	Versuche MySQL zu starten...
+17:11:16  [mysql] 	Statusänderung erkannt: gestartet
+18:56:11  [mysql] 	Versuche MySQL zu beenden...
+18:56:12  [Apache] 	stoppe Modul Apache (PID: 6928)
+18:56:12  [Apache] 	stoppe Modul Apache (PID: 4676)
+18:56:13  [Apache] 	Statusänderung erkannt: gestoppt
+18:56:13  [mysql] 	Statusänderung erkannt: gestoppt
+18:56:18  [main] 	Deinitialisiere Module
+18:56:18  [main] 	Deinitialisiere Control Panel
+
+17:56:25  [main] 	Initialisere Control Panel
+17:56:25  [main] 	Windows Version:  Enterprise  64-bit
+17:56:25  [main] 	XAMPP Version: 5.6.19
+17:56:25  [main] 	Control Panel Version: 3.2.2  [ Compiled: Nov 12th 2015 ]
+17:56:25  [main] 	Dein Benutzerprofil besitzt keine Administratorenrechte! Das reicht aus für die meisten
+17:56:25  [main] 	Anwendungsfunktionen, aber wann immer du etwas mit Windows-Diensten tun möchtest,
+17:56:25  [main] 	wird eine Sicherheitsabfrage erscheinen oder etwas wird garnicht erst funktionieren!
+17:56:25  [main] 	Also denke daran diese Anwendung mit Administratorrechten zu starten!
+17:56:25  [main] 	XAMPP Installationsverzeichnis: "c:\xampp\"
+17:56:25  [main] 	Voraussetzungen werden geprüft
+17:56:28  [main] 	Alle Voraussetzungen sind erfüllt
+17:56:28  [main] 	Initialisiere Module
+17:56:28  [main] 	Starte Check-Timer
+17:56:28  [main] 	Control Panel bereit
+19:59:10  [Apache] 	Statusänderung erkannt: gestartet
+19:59:10  [mysql] 	Statusänderung erkannt: gestartet
+20:27:20  [Apache] 	Statusänderung erkannt: gestoppt
+20:27:20  [Apache] 	Fehler: Apache wurde unerwartet beendet
+20:27:20  [Apache] 	Ursache könnte ein geblockter Port, fehlende Abhängigkeiten,
+20:27:20  [Apache] 	fehlende Berechtigungen, ein Absturz oder ein Abbruch einer anderen Methode sein.
+20:27:20  [Apache] 	Drücke den Logs Button um error logs zu sehen und prüfe
+20:27:20  [Apache] 	im Windows Event Viewer für weitere Hinweise
+20:27:20  [Apache] 	Wenn du weitere Hilfe benötigst, kopiere den kompletten Inhalt des Log Fensters
+20:27:20  [Apache] 	und füge ihn als Ergänzung in einem neuen Forum Eintrag hinzu.
+20:27:20  [mysql] 	Statusänderung erkannt: gestoppt
+20:27:20  [mysql] 	Fehler: MySQL wurde unerwartet beendet
+20:27:20  [mysql] 	Ursache könnte ein geblockter Port, fehlende Abhängigkeiten,
+20:27:20  [mysql] 	fehlende Berechtigungen, ein Absturz oder ein Abbruch einer anderen Methode sein.
+20:27:20  [mysql] 	Drücke den Logs Button um error logs zu sehen und prüfe
+20:27:20  [mysql] 	im Windows Event Viewer für weitere Hinweise
+20:27:20  [mysql] 	Wenn du weitere Hilfe benötigst, kopiere den kompletten Inhalt des Log Fensters
+20:27:20  [mysql] 	und füge ihn als Ergänzung in einem neuen Forum Eintrag hinzu.
+03:05:57  [main] 	Deinitialisiere Module
+03:05:57  [main] 	Deinitialisiere Control Panel
+
