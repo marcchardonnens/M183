@@ -25,14 +25,12 @@ namespace M183
         //Tutorial 5-OTP
         public Task SendAsync(IdentityMessage message)
         {
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls12;
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Ssl3;
             var client = new SmtpClient("smtp.mailgun.org", 587)
             {
-                Credentials = new NetworkCredential("postmaster@m183.tk", "Wc3BestG4me!"),
+                Credentials = new System.Net.NetworkCredential("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", "2d0cd3a9ffbf26430a7febb9fb66e265-060550c6-6d976bb2"),
                 EnableSsl = true
             };
-            client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
+            client.Send("postmaster@sandbox225443442a884472b81a9bdb12d6ac7f.mailgun.org", message.Destination, message.Subject, message.Body);
             return Task.FromResult(0);
         }
     }
