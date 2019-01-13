@@ -75,18 +75,46 @@ namespace M183.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
+                    
+                    LoginLog logSuccess = new LoginLog();
+                    logSuccess.TimeCreated = DateTime.Now;
+                    logSuccess.Success = true;
+                    logSuccess.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logSuccess);
+                    context.SaveChanges();
                     return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
+                    ApplicationUser user = UserManager.FindByEmail(model.Email);
+                    if(user != null)
+                    {
+                        user.AccessFailedCount++;
+                        UserManager.Update(user);
+                    }
+                    LoginLog logFail = new LoginLog();
+                    logFail.TimeCreated = DateTime.Now;
+                    logFail.Success = true;
+                    logFail.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logFail);
+                    context.SaveChanges();
+                    return View(model);
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    LoginLog log = new LoginLog();
+                    log.TimeCreated = DateTime.Now;
+                    log.Success = true;
+                    log.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(log);
+                    context.SaveChanges();
                     return View(model);
             }
         }
@@ -121,15 +149,28 @@ namespace M183.Controllers
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
+                    LoginLog logSuccess = new LoginLog();
+                    logSuccess.TimeCreated = DateTime.Now;
+                    logSuccess.Success = true;
+                    logSuccess.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logSuccess);
+                    context.SaveChanges();
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
+                    LoginLog logFail = new LoginLog();
+                    logFail.TimeCreated = DateTime.Now;
+                    logFail.Success = true;
+                    logFail.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logFail);
+                    context.SaveChanges();
                     return View(model);
             }
         }
@@ -344,9 +385,16 @@ namespace M183.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
+                    LoginLog logSuccess = new LoginLog();
+                    logSuccess.TimeCreated = DateTime.Now;
+                    logSuccess.Success = true;
+                    logSuccess.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logSuccess);
+                    context.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -357,6 +405,12 @@ namespace M183.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                    LoginLog logFail = new LoginLog();
+                    logFail.TimeCreated = DateTime.Now;
+                    logFail.Success = true;
+                    logFail.UserId = User.Identity.GetUserId();
+                    context.LoginLogs.Add(logFail);
+                    context.SaveChanges();
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
