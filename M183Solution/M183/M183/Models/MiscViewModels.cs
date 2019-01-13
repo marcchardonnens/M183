@@ -5,6 +5,7 @@ using System.Web;
 
 namespace M183.Models
 {
+    //Tutorial 14-Logging und Audit Trails
     public class AllUserLoginViewModel
     {
         public int Id { get; set; }

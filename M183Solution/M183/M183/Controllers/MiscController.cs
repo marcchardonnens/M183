@@ -31,6 +31,7 @@ namespace M183.Controllers
             return View();
         }
 
+        //Tutorial 10-Database XSS - SQL Injection
         [HttpPost]
         public ActionResult XssVulnerableLogin(string username, string password)
         {
@@ -61,6 +62,7 @@ namespace M183.Controllers
             return View();
         }
 
+        //Tutorial 10-Database XSS - SQL Injection
         [HttpPost]
         public ActionResult GiveFeedback(string feedback)
         {
@@ -91,6 +93,7 @@ namespace M183.Controllers
             return RedirectToAction("XssVulnerableLogin");
         }
 
+        //Tutorial 14-Logging und Audit Trails
         public ActionResult AllUserLogins(AllUserLoginViewModel model)
         {
             ApplicationDbContext context = new ApplicationDbContext();

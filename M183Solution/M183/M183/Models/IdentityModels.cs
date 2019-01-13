@@ -24,6 +24,7 @@ namespace M183.Models
         }
     }
 
+    //Tutorial 14-Logging und Audit Trails
     public class LoginLog
     {
         public int Id { get; set; }
@@ -31,6 +32,7 @@ namespace M183.Models
         public DateTime TimeCreated { get; set; }
         public bool Success { get; set; }
 
+        //References in AccountController.cs
         public static void CreateLoginLog(string email, bool success, ApplicationUserManager manager)
         {
             ApplicationDbContext context = ApplicationDbContext.Create();
@@ -64,6 +66,7 @@ namespace M183.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //Tutorial 14-Logging und Audit Trails
         public DbSet<LoginLog> LoginLogs { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
