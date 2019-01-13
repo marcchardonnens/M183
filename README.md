@@ -1,6 +1,6 @@
 # M183
 
-Auf der Index-Seite gibt es eine Link zur Aufgabensammlung, in der wir alle Aufgaben ausser 13 verlinkt haben.
+Auf der Index-Seite haben wir alle Aufgaben ausser die Nummer 13 verlinkt.
 Zusätzlich sind eigentlich alle Code-Teile/Files die zu einem Tutorial gehören, mit den unten definierten Kommentaren gekennzeichnet.
 Tutorial 13 wurde in einem eigenständigen Ordner abgegeben und hatt darum keine solche Kennzeichnung.
 
