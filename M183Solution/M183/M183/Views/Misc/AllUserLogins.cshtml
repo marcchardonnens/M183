@@ -1,0 +1,25 @@
+﻿@model List<M183.Models.AllUserLoginViewModel>
+
+@{
+    ViewBag.Title = "AllUserLogins";
+}
+
+<h2>All User Logins</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Email</th>
+        <th>Time Created</th>
+        <th>Success</th>
+    </tr>
+
+    @foreach (M183.Models.AllUserLoginViewModel vm in Model)
+    {
+        <tr>
+            <td>@vm.Email</td>
+            <td>@vm.TimeCreated.ToString()</td>
+            <td>@vm.Success.ToString()</td>
+        </tr> 
+    }
+
+</table>

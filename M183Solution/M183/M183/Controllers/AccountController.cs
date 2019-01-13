@@ -80,16 +80,11 @@ namespace M183.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    
-                    LoginLog logSuccess = new LoginLog();
-                    logSuccess.TimeCreated = DateTime.Now;
-                    logSuccess.Success = true;
-                    logSuccess.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logSuccess);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(model.Email, true, UserManager);
                     return RedirectToLocal(returnUrl);
 
                 case SignInStatus.LockedOut:
+                    LoginLog.CreateLoginLog(model.Email, false, UserManager);
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
@@ -100,21 +95,11 @@ namespace M183.Controllers
                         user.AccessFailedCount++;
                         UserManager.Update(user);
                     }
-                    LoginLog logFail = new LoginLog();
-                    logFail.TimeCreated = DateTime.Now;
-                    logFail.Success = true;
-                    logFail.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logFail);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(model.Email, false, UserManager);
                     return View(model);
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    LoginLog log = new LoginLog();
-                    log.TimeCreated = DateTime.Now;
-                    log.Success = true;
-                    log.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(log);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(model.Email, false, UserManager);
                     return View(model);
             }
         }
@@ -122,14 +107,14 @@ namespace M183.Controllers
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe, string email)
         {
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe, Email = email});
         }
 
         //
@@ -153,24 +138,14 @@ namespace M183.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    LoginLog logSuccess = new LoginLog();
-                    logSuccess.TimeCreated = DateTime.Now;
-                    logSuccess.Success = true;
-                    logSuccess.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logSuccess);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(model.Email, true, UserManager);
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
-                    LoginLog logFail = new LoginLog();
-                    logFail.TimeCreated = DateTime.Now;
-                    logFail.Success = true;
-                    logFail.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logFail);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(model.Email, false, UserManager);
                     return View(model);
             }
         }
@@ -369,7 +344,7 @@ namespace M183.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe, Email = model.Email});
         }
 
         //
@@ -389,12 +364,7 @@ namespace M183.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    LoginLog logSuccess = new LoginLog();
-                    logSuccess.TimeCreated = DateTime.Now;
-                    logSuccess.Success = true;
-                    logSuccess.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logSuccess);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(loginInfo.Email, true, UserManager);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -405,12 +375,7 @@ namespace M183.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    LoginLog logFail = new LoginLog();
-                    logFail.TimeCreated = DateTime.Now;
-                    logFail.Success = true;
-                    logFail.UserId = User.Identity.GetUserId();
-                    context.LoginLogs.Add(logFail);
-                    context.SaveChanges();
+                    LoginLog.CreateLoginLog(loginInfo.Email, false, UserManager);
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
@@ -424,15 +389,16 @@ namespace M183.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                LoginLog.CreateLoginLog(model.Email, true, UserManager);
                 return RedirectToAction("Index", "Manage");
             }
-
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
+                    LoginLog.CreateLoginLog(model.Email, false, UserManager);
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -440,13 +406,16 @@ namespace M183.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    LoginLog.CreateLoginLog(info.Email, true, UserManager);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        
+
                         return RedirectToLocal(returnUrl);
                     }
                 }
-                AddErrors(result);
+                LoginLog.CreateLoginLog(model.Email, false, UserManager);
             }
 
             ViewBag.ReturnUrl = returnUrl;
