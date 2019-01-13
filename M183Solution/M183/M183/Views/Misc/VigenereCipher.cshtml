@@ -14,7 +14,6 @@
     </div>
 
     <div class="row">
-
         <div class="col-md-6">
             <br />
             <legend>Plaintext</legend>
@@ -35,9 +34,7 @@
     <div class="row">
         <div class="col-md-12"><br /><br /></div>
     </div>
-
     <div class="row">
-
         <div class="col-md-6">
             <br />
             <legend>Ciphertext</legend>
@@ -58,7 +55,6 @@
 <script>
     //call analyze function
     document.getElementById("analyzePlaintext").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -70,7 +66,6 @@
 
     //call encrypt function
     document.getElementById("encrypt").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -86,7 +81,6 @@
         var histogram_prepare = [];
 
         for (var i = 0, len = text.length; i < len; i++) {
-
             var letter = text[i];
             //check if current position is a character
             if (letter.match(/[a-z]/i))
@@ -94,16 +88,13 @@
                 histogram_prepare[letter] = (histogram_prepare[letter] || 0) + 1;
             }
         }
-
         histogram = histogram_prepare.sort(function(a, b){
             a = a[1];
             b = b[1];
 
             return a < b ? -1 : (a > b ? 1 : 0);
         });
-
         return histogram;
-
     }
 
     //fill histogram data in table
@@ -190,7 +181,6 @@
 
     //call analyze function
     document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -202,7 +192,6 @@
 
     //call decrypt function
     document.getElementById("decrypt").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 

@@ -19,6 +19,7 @@
         <br /><br />
         <button class="btn btn-primary" id="encrypt">Encrypt</button>
     </div>
+
     <div class="col-md-6">
         <br /><br />
         <legend>Analyzed Plaintext</legend>
@@ -43,6 +44,7 @@
         <button class="btn btn-primary" id="decrypt">Decrypt</button> using key
         <input name="backshift" id="decryptKey" type="text" class="form-control" style="width:200px;display:inline-block;" />
     </div>
+
     <div class="col-md-6">
         <br />
         <legend>Analyzed Chiphertext</legend>
@@ -78,7 +80,6 @@
         var histogram_prepare = [];
 
         for (var i = 0, len = text.length; i < len; i++){
-
             var letter = text[i];
             //check if current position is a character
             if (letter.match(/[a-z]/i))
@@ -95,7 +96,6 @@
         });
 
         return histogram;
-
     }
 
     //fill histogram data in table
@@ -112,7 +112,6 @@
         return html;
     }
 
-
     //encrypt
     function encryptOneTimePad(input)
     {
@@ -128,7 +127,6 @@
                 //random number between 0 and 25, add 65 so it fits char codes
                 key += String.fromCharCode(Math.floor(Math.random() * 25) + 65);
             }
-
             else if ((c >= 97) && (c <= 122))
             {
                 //random number between 0 and 25, add 65 so it fits char codes
@@ -162,10 +160,8 @@
                 }
             }
         }
-
         return {"ciphertext" : output, "key" : key };
     }
-
 
     //decrypt
     function decryptOneTimePad(input, key) {
@@ -213,7 +209,6 @@
 
     //call analyze function
     document.getElementById("analyzeCiphertext").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -225,7 +220,6 @@
 
     //call decrypt function
     document.getElementById("decrypt").addEventListener("click", function (e) {
-
         e.preventDefault();
         e.stopPropagation();
 
