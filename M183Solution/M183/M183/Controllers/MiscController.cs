@@ -40,7 +40,8 @@ namespace M183.Controllers
             username = Regex.Replace(username, @"[!@#$%_]", "");
             password = Regex.Replace(password, @"[!@#$%_]", "");
 
-            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
+            //check path on your PC, relative path doesnt work
+            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
 
             SqlCommand c = new SqlCommand();
             SqlDataReader reader;
@@ -74,7 +75,8 @@ namespace M183.Controllers
             //remove harmful characters
             feedback = Regex.Replace(feedback, @"[!@#$%_]", "");
 
-            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
+            //check path on your PC, relative path doesnt work
+            SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
 
             SqlCommand c = new SqlCommand();
             SqlDataReader reader;
