@@ -76,7 +76,6 @@ namespace M183.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
@@ -135,7 +134,6 @@ namespace M183.Controllers
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
-            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
@@ -364,7 +362,6 @@ namespace M183.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            ApplicationDbContext context = ApplicationDbContext.Create();
             switch (result)
             {
                 case SignInStatus.Success:
@@ -496,6 +493,7 @@ namespace M183.Controllers
         //Tutorial 5-OTP
         private async Task SendVerificationMail(ApplicationUser user)
         {
+            //sent email with verification link
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
             await UserManager.SendEmailAsync(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>");

@@ -25,14 +25,18 @@ namespace M183
         //Tutorial 5-OTP
         public Task SendAsync(IdentityMessage message)
         {
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls12;
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Ssl3;
             var client = new SmtpClient("smtp.mailgun.org", 587)
             {
+                //these credentials were working for a week
+                //the domain is still marked as active at mailguns dashboard
+                //however after some testing over the weekend it suddenly stopped working
+                //the sandboxone doesnt work either
+                //i suspect my mailgun account may have gotten flagged :(
+                //the code should work just fine with a different account
                 Credentials = new NetworkCredential("postmaster@m183.tk", "Wc3BestG4me!"),
                 EnableSsl = true
             };
-            client.Send("postmaster@m183.tk", message.Destination, message.Subject, message.Body);
+            client.SendAsync("postmaster@m183.tk", message.Destination, message.Subject, message.Body, null);
             return Task.FromResult(0);
         }
     }
@@ -42,6 +46,10 @@ namespace M183
         //Tutorial 5-OTP
         public Task SendAsync(IdentityMessage message)
         {
+
+            //this only works with testnumbers that have been registered at nexmo.
+            //to use the full feature i would have had to pay $10
+            //use your own api key and secret and register your number and all sms communication will work
             ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls12;
 
             HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create("https://rest.nexmo.com/sms/json");
@@ -75,22 +83,26 @@ namespace M183
     {
         public Task<string> GenerateAsync(string purpose, UserManager<ApplicationUser, string> manager, ApplicationUser user)
         {
+            //current code of user
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
             return Task.FromResult(tfa.GetCurrentPIN(user.GoogleAuthSecret));
         }
 
         public Task<bool> IsValidProviderForUserAsync(UserManager<ApplicationUser, string> manager, ApplicationUser user)
         {
+            //check if GoogleAuth was enabled
             return Task.FromResult(user.GoogleAuthVerified);
         }
 
         public Task NotifyAsync(string token, UserManager<ApplicationUser, string> manager, ApplicationUser user)
         {
+            //yes.
             return Task.FromResult(0);
         }
 
         public Task<bool> ValidateAsync(string purpose, string token, UserManager<ApplicationUser, string> manager, ApplicationUser user)
         {
+            //validate userinput with current token with corresponding user secret
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
             return Task.FromResult(tfa.ValidateTwoFactorPIN(user.GoogleAuthSecret, tfa.GetCurrentPIN(user.GoogleAuthSecret)));
         }
@@ -144,10 +156,8 @@ namespace M183
                 BodyFormat = "Your security code is {0}"
             });
             //Tutorial 5-TOTP
-            manager.RegisterTwoFactorProvider("Google Authenticator", new GoogleTokenProvider<ApplicationUser>
-            {
-                
-            });
+            //add as two factor option
+            manager.RegisterTwoFactorProvider("Google Authenticator", new GoogleTokenProvider<ApplicationUser>());
 
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();

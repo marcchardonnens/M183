@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using M183.Models;
+using System.Text.RegularExpressions;
 
 namespace M183.Controllers
 {
@@ -35,6 +36,10 @@ namespace M183.Controllers
         [HttpPost]
         public ActionResult XssVulnerableLogin(string username, string password)
         {
+            //remove harmful characters
+            username = Regex.Replace(username, @"[!@#$%_]", "");
+            password = Regex.Replace(password, @"[!@#$%_]", "");
+
             SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
 
             SqlCommand c = new SqlCommand();
@@ -66,6 +71,9 @@ namespace M183.Controllers
         [HttpPost]
         public ActionResult GiveFeedback(string feedback)
         {
+            //remove harmful characters
+            feedback = Regex.Replace(feedback, @"[!@#$%_]", "");
+
             SqlConnection db = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\M183\\M183Solution\\M183\\App_Data\\sql_xss_injection.mdf;Integrated Security=True;Connect Timeout=30");
 
             SqlCommand c = new SqlCommand();

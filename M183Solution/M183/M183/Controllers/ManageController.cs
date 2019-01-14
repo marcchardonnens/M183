@@ -344,16 +344,19 @@ namespace M183.Controllers
         //Tutorial 5-TOTP
         public ActionResult AddGoogleAuthenticator()
         {
+            //on opening the page, a usersecret is generated
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
-
             string secret = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
+            //secret is saved in DB
             ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
             user.GoogleAuthSecret = secret;
             UserManager.Update(user);
 
+            //setupInfo is generated from secret
             var setupInfo = tfa.GenerateSetupCode("m183("+ User.Identity.Name + ")", secret, 300, 300);
 
+            //Source for Qr image and code for manual input
             ViewBag.Qr = setupInfo.QrCodeSetupImageUrl;
             ViewBag.QrCode = setupInfo.ManualEntryKey;
             return View();
@@ -365,10 +368,12 @@ namespace M183.Controllers
         {
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
 
+            //validate usertoken input
             bool isCorrectPin = tfa.ValidateTwoFactorPIN(UserManager.FindById(User.Identity.GetUserId()).GoogleAuthSecret, CodeInput);
             
             if(isCorrectPin)
             {
+                //finalize GoogleAuthenticator verification
                 ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
                 user.GoogleAuthVerified = true;
                 UserManager.Update(user);
@@ -385,6 +390,7 @@ namespace M183.Controllers
         [HttpPost]
         public ActionResult RemoveGoogleAuthenticator()
         {
+            //remove google authenticator
             ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
             user.GoogleAuthVerified = false;
             user.GoogleAuthSecret = "";
