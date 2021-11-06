@@ -206,29 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901111941133_Init.cs" />
-    <Compile Include="Migrations\201901111941133_Init.Designer.cs">
-      <DependentUpon>201901111941133_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901112021409_addedUserSecrect.cs" />
-    <Compile Include="Migrations\201901112021409_addedUserSecrect.Designer.cs">
-      <DependentUpon>201901112021409_addedUserSecrect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901112048276_addedUserSecrect1.cs" />
-    <Compile Include="Migrations\201901112048276_addedUserSecrect1.Designer.cs">
-      <DependentUpon>201901112048276_addedUserSecrect1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901112103003_addedUserSecrect2.cs" />
-    <Compile Include="Migrations\201901112103003_addedUserSecrect2.Designer.cs">
-      <DependentUpon>201901112103003_addedUserSecrect2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901130138111_loginlog.cs" />
-    <Compile Include="Migrations\201901130138111_loginlog.Designer.cs">
-      <DependentUpon>201901130138111_loginlog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901131103070_loginlog1.cs" />
-    <Compile Include="Migrations\201901131103070_loginlog1.Designer.cs">
-      <DependentUpon>201901131103070_loginlog1.cs</DependentUpon>
+    <Compile Include="Migrations\201901132346495_init.cs" />
+    <Compile Include="Migrations\201901132346495_init.Designer.cs">
+      <DependentUpon>201901132346495_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,23 +300,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901111941133_Init.resx">
-      <DependentUpon>201901111941133_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901112021409_addedUserSecrect.resx">
-      <DependentUpon>201901112021409_addedUserSecrect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901112048276_addedUserSecrect1.resx">
-      <DependentUpon>201901112048276_addedUserSecrect1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901112103003_addedUserSecrect2.resx">
-      <DependentUpon>201901112103003_addedUserSecrect2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901130138111_loginlog.resx">
-      <DependentUpon>201901130138111_loginlog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901131103070_loginlog1.resx">
-      <DependentUpon>201901131103070_loginlog1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901132346495_init.resx">
+      <DependentUpon>201901132346495_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
